@@ -10,11 +10,21 @@ const componentRegistry: Record<string, React.FC<{ data: UIComponent }>> = {
   'button': SDButton,
 };
 
-export const UIRenderer = ({ components }: { components: UIComponent[] }) => {
+interface RendererProps {
+  components: UIComponent[];
+  appState: Record<string, boolean>;
+}
+
+export const UIRenderer = ({ components, appState }: RendererProps) => {
   return (
     <View style={{ padding: 20, alignItems: 'center' }}>
       {components.map((componentData, index) => {
+        if (componentData.visibleIf && !appState[componentData.visibleIf]) {
+          return null; 
+        }
+
         const ComponentToRender = componentRegistry[componentData.type];
+
         if (ComponentToRender) {
           return <ComponentToRender key={index} data={componentData} />;
         }

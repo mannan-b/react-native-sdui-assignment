@@ -15,6 +15,7 @@ export interface UIComponent {
   text?: string;       
   action?: string;     
   style?: ComponentStyle;
+  visibleIf?: string;
 }
 
 export interface ServerResponse {
