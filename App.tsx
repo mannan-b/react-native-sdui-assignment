@@ -5,11 +5,17 @@ import { ServerResponse } from './types';
 
 const MOCK_API_RESPONSE = {
   "screen": "promo_page",
+  "theme": {
+    "backgroundColor": "#121212", 
+    "primaryColor": "#BB86FC",    
+    "textColor": "#FFFFFF",      
+    "buttonTextColor": "#000000"
+  },
   "components": [
     { 
       "type": "text", 
       "value": "Welcome to Pizza Week!", 
-      "style": { "fontSize": 24, "color": "#FF5733", "fontWeight": "bold", "marginBottom": 10 } 
+      "style": { "fontSize": 24, "fontWeight": "bold", "marginBottom": 10 } 
     },
     { 
       "type": "image", 
@@ -19,14 +25,14 @@ const MOCK_API_RESPONSE = {
     { 
       "type": "button", 
       "text": "Order Now", 
-      "action": "navigate_to_menu" 
+      "action": "navigate_to_menu"
     },
     { 
       "type": "button", 
       "text": "Unlock Secret Menu", 
       "action": "unlock_vip",
       "visibleIf": "isVIP",
-      "style": { "marginTop": 15, "backgroundColor": "#333" } 
+      "style": { "marginTop": 15 } 
     }
   ]
 };
@@ -48,19 +54,22 @@ export default function App() {
     if (action === 'navigate_to_menu') {
       Alert.alert("Navigation", "Opening the Pizza Menu...");
     } else if (action === 'unlock_vip') {
-      Alert.alert("VIP Access", "Secret menu unlocked! 🔓");
+      Alert.alert("VIP Access", "Secret menu unlocked!");
     } else {
       Alert.alert("Unknown Action", action);
     }
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="dark-content" />
+    <SafeAreaView style={[styles.container, { backgroundColor: data?.theme.backgroundColor || '#fff' }]}>
+      <StatusBar barStyle={data?.theme.backgroundColor === "#121212" ? "light-content" : "dark-content"} />
+      
       {data ? (
-        <UIRenderer {...({ components: data.components, appState: userState, onAction: handleAction } as any)} />
+        <UIRenderer
+          {...({ components: data.components, appState: userState, onAction: handleAction, theme: data.theme } as any)}
+        />
       ) : (
-        <ActivityIndicator size="large" color="#FF5733" />
+        <ActivityIndicator size="large" />
       )}
     </SafeAreaView>
   );

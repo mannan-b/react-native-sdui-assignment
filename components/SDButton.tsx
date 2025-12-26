@@ -2,18 +2,21 @@ import React from 'react';
 import { TouchableOpacity, Text, Alert, StyleSheet, ViewStyle } from 'react-native';
 import { UIComponent } from './../types';
 
-export const SDButton = ({ data }: { data: UIComponent }) => {
-  const handlePress = () => {
-    // In a real app, this would trigger a navigation event
-    Alert.alert('Action Triggered', `Action: ${data.action}`);
-  };
+import { Theme } from '../types';
 
+export const SDButton = ({ data, onAction, theme }: { data: UIComponent, onAction?: any, theme: Theme }) => {
   return (
     <TouchableOpacity 
-      onPress={handlePress} 
-      style={[styles.button, data.style as ViewStyle]}
+      onPress={() => onAction?.(data.action)} 
+      style={[
+        styles.button, 
+        { backgroundColor: theme.primaryColor }, 
+        data.style as any
+      ]}
     >
-      <Text style={styles.text}>{data.text}</Text>
+      <Text style={[styles.text, { color: theme.buttonTextColor }]}>
+        {data.text}
+      </Text>
     </TouchableOpacity>
   );
 };
