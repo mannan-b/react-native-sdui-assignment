@@ -95,3 +95,7 @@ npx expo start
 * Scan the QR code displayed in the terminal using the Expo Go app on your phone.
 
 5. **Screenshots**
+![WhatsApp Image 2025-12-26 at 22 28 00 (1)](https://github.com/user-attachments/assets/2d0206ab-a11a-4456-a243-081ceb9daec2)
+![WhatsApp Image 2025-12-26 at 22 28 00](https://github.com/user-attachments/assets/0295e513-15ed-4f54-9eb4-60364ae2f75a)
+![WhatsApp Image 2025-12-26 at 22 28 00 (2)](https://github.com/user-attachments/assets/8094f3f1-fa3c-4d82-9371-6b846339d2dc)
+
