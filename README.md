@@ -71,7 +71,7 @@ The app uses a JSON structure containing a global theme object and a list of com
 
 1. **Clone the repository**
 ```bash
-git clone <your-repo-link>
+git clone https://github.com/mannan-b/react-native-sdui-assignment
 cd sdui-assignment
 
 ```
